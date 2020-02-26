@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="jvm,java," />
 
 
 
@@ -94,11 +94,17 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Laichileung">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="垃圾收集器 Garbage Collection 程序计数器、虚拟机栈、本地方法栈这3个区域会随着线程而生，并随着线程而销毁。栈中的栈帧分配多少内存基本上在类结构确定下来即编译期便可知。随着方法结束或线程结束，对应的内存自然会进行回收。   堆空间、方法区则是在运行期间才会动态创建对象，因此垃圾收集器所关注的是这两个区域对应的内存空间。   引用计数法 给对象添加一个引用计数器，每当引用到该对象是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java垃圾回收器">
+<meta property="og:url" content="http://yoursite.com/2020/02/26/java%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8/index.html">
 <meta property="og:site_name" content="Laichileung">
+<meta property="og:description" content="垃圾收集器 Garbage Collection 程序计数器、虚拟机栈、本地方法栈这3个区域会随着线程而生，并随着线程而销毁。栈中的栈帧分配多少内存基本上在类结构确定下来即编译期便可知。随着方法结束或线程结束，对应的内存自然会进行回收。   堆空间、方法区则是在运行期间才会动态创建对象，因此垃圾收集器所关注的是这两个区域对应的内存空间。   引用计数法 给对象添加一个引用计数器，每当引用到该对象是">
+<meta property="article:published_time" content="2020-02-26T09:53:48.000Z">
+<meta property="article:modified_time" content="2020-02-26T09:57:02.393Z">
 <meta property="article:author" content="Laichileung">
+<meta property="article:tag" content="jvm">
+<meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
 
 
@@ -128,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/02/26/java垃圾回收器/"/>
 
 
 
 
 
-  <title>Laichileung</title>
+  <title>java垃圾回收器 | Laichileung</title>
   
 
 
@@ -159,9 +165,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-   page-home 
- ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -254,9 +258,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -286,9 +290,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/02/26/java%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8/" itemprop="url">java垃圾回收器</a></h1>
+          <h1 class="post-title" itemprop="name headline">java垃圾回收器</h1>
         
 
         <div class="post-meta">
@@ -371,9 +373,7 @@
       
 
       
-        
-          
-            <h2 id="垃圾收集器-Garbage-Collection"><a href="#垃圾收集器-Garbage-Collection" class="headerlink" title="垃圾收集器 Garbage Collection"></a>垃圾收集器 Garbage Collection</h2><p> 程序计数器、虚拟机栈、本地方法栈这3个区域会随着线程而生，并随着线程而销毁。栈中的栈帧分配多少内存基本上在类结构确定下来即编译期便可知。随着方法结束或线程结束，对应的内存自然会进行回收。
+        <h2 id="垃圾收集器-Garbage-Collection"><a href="#垃圾收集器-Garbage-Collection" class="headerlink" title="垃圾收集器 Garbage Collection"></a>垃圾收集器 Garbage Collection</h2><p> 程序计数器、虚拟机栈、本地方法栈这3个区域会随着线程而生，并随着线程而销毁。栈中的栈帧分配多少内存基本上在类结构确定下来即编译期便可知。随着方法结束或线程结束，对应的内存自然会进行回收。
 
 <p> 堆空间、方法区则是在运行期间才会动态创建对象，因此垃圾收集器所关注的是这两个区域对应的内存空间。
 
@@ -441,8 +441,6 @@
 </ul>
 <h3 id="标记-整理-Mark-Compact"><a href="#标记-整理-Mark-Compact" class="headerlink" title="标记-整理 Mark-Compact"></a>标记-整理 Mark-Compact</h3><p> 复制算法在对象存活率比较高的时候，就要进行过多的复制操作，效率会变得低。在标记对象后，将所有存活对象移向内存一端，然后清理掉边界以外的内存。
 
-          
-        
       
     </div>
     
@@ -457,156 +455,38 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/26/First-blog/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Laichileung">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/default_avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Laichileung">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/02/26/First-blog/" itemprop="url">First blog</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-26T16:46:15+08:00">
-                2020-02-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%85%B6%E4%BB%96/" itemprop="url" rel="index">
-                    <span itemprop="name">其他</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/jvm/" rel="tag"># jvm</a>
           
-
+            <a href="/tags/java/" rel="tag"># java</a>
           
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>欢迎来到Laichileung的Bolg。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
       
 
       
       
-        <div class="post-eof"></div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/02/26/First-blog/" rel="next" title="First blog">
+                <i class="fa fa-chevron-left"></i> First blog
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
       
     </footer>
   </div>
@@ -616,10 +496,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -627,6 +508,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -647,8 +532,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/default_avatar.jpeg"
@@ -710,6 +604,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#垃圾收集器-Garbage-Collection"><span class="nav-number">1.</span> <span class="nav-text">垃圾收集器 Garbage Collection</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#引用计数法"><span class="nav-number">1.1.</span> <span class="nav-text">引用计数法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可达性分析"><span class="nav-number">1.2.</span> <span class="nav-text">可达性分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#引用Reference"><span class="nav-number">1.3.</span> <span class="nav-text">引用Reference</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#永久代（方法区）的垃圾回收"><span class="nav-number">1.4.</span> <span class="nav-text">永久代（方法区）的垃圾回收</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#垃圾回收算法"><span class="nav-number">2.</span> <span class="nav-text">垃圾回收算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#标记-清除-Mark-Sweep"><span class="nav-number">2.1.</span> <span class="nav-text">标记-清除 Mark-Sweep</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标记-复制-Coying"><span class="nav-number">2.2.</span> <span class="nav-text">标记-复制 Coying</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标记-整理-Mark-Compact"><span class="nav-number">2.3.</span> <span class="nav-text">标记-整理 Mark-Compact</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -812,10 +722,10 @@
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
-  
+
 
   
 
